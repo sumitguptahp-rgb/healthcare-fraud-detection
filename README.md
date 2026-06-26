@@ -52,11 +52,6 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-### 3. Train the model
-Open and run `fraud-detection-healthcare_obfuscated.ipynb` in Jupyter. This will populate the `models/` directory.
-
-> **Note:** The dataset CSV is not tracked in git. Place `healthcare_fraud_detection.csv` in the project root before running the notebook.
-
 ### 4. Start the backend
 ```bash
 cd backend

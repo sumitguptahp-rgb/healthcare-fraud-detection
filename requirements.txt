@@ -1,0 +1,46 @@
+﻿# Core ML & Data
+numpy==2.4.6
+pandas==3.0.3
+scikit-learn==1.8.0
+scipy==1.17.1
+xgboost==3.2.0
+imbalanced-learn==0.14.1
+joblib==1.5.3
+shap==0.52.0
+
+# Visualization (used in notebook)
+matplotlib==3.10.9
+seaborn==0.13.2
+
+# Backend API
+fastapi==0.136.3
+uvicorn==0.48.0
+pydantic==2.13.4
+starlette==1.2.1
+httpx==0.28.1
+
+# FastAPI / HTTP dependencies
+anyio==4.13.0
+h11==0.16.0
+httpcore==1.0.9
+click==8.4.1
+
+# Jupyter / Notebook
+jupyter==1.1.1
+jupyterlab==4.5.7
+ipykernel==7.2.0
+ipython==9.14.0
+ipywidgets==8.1.8
+nbformat==5.10.4
+nbclient==0.10.4
+nbconvert==7.17.1
+
+# Utility / Shared
+tqdm==4.67.3
+requests==2.34.2
+python-dateutil==2.9.0.post0
+typing_extensions==4.15.0
+packaging==26.2
+PyYAML==6.0.3
+six==1.17.0
+setuptools==82.0.1

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Fraud Detection Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-mesh"></div>
+    <div class="dashboard-container">
+        <header>
+            <h1>Fraud Detection Intelligence</h1>
+            <p>Real-time anomaly evaluation system</p>
+        </header>
+
+        <main>
+            <form id="prediction-form" class="glass-panel">
+                <div class="form-section">
+                    <h3>Patient Demographics</h3>
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label>Patient Name</label>
+                            <input type="text" id="Patient_Name" value="Rahul Sharma">
+                        </div>
+                        <div class="input-group">
+                            <label>Patient Age</label>
+                            <input type="number" name="Patient_Age" value="45" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Gender</label>
+                            <select name="Patient_Gender" required>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>State</label>
+                            <input type="text" name="Patient_State" value="NY">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Clinical Details</h3>
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label title="Hospital/Clinic ID">Provider / Hospital ID</label>
+                            <input type="text" name="Provider_ID" value="P0052" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Specialty</label>
+                            <select name="Provider_Specialty" required>
+                                <option value="Cardiology">Cardiology</option>
+                                <option value="General Practice">General Practice</option>
+                                <option value="Pulmonology">Pulmonology</option>
+                                <option value="Orthopedics">Orthopedics</option>
+                                <option value="Internal Medicine">Internal Medicine</option>
+                                <option value="Neurology">Neurology</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label title="International Classification of Diseases">Diagnosis Code (ICD-10)</label>
+                            <input type="text" name="Diagnosis_Code" value="I25.10" required>
+                        </div>
+                        <div class="input-group">
+                            <label title="Standard Medical Code">Procedure Code</label>
+                            <input type="text" name="Procedure_Code" value="36415" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Visit Type</label>
+                            <select name="Visit_Type" required>
+                                <option value="Outpatient">Outpatient</option>
+                                <option value="Inpatient">Inpatient</option>
+                                <option value="Emergency">Emergency</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Length of Stay (Days)</label>
+                            <input type="number" name="Length_of_Stay" value="0" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Chronic Conditions</label>
+                            <select name="Chronic_Condition_Flag" required>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Prior Visits (12mo)</label>
+                            <input type="number" step="1" name="Prior_Visits_12m" value="2" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Claim Financials & Logistics</h3>
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label>Claim Amount (₹)</label>
+                            <input type="number" step="0.01" name="Claim_Amount" value="36811.33" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Approved Amount (₹)</label>
+                            <input type="number" step="0.01" name="Approved_Amount" value="32632.28" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Insurance Type</label>
+                            <select name="Insurance_Type" required>
+                                <option value="Medicaid">Medicaid</option>
+                                <option value="Medicare">Medicare</option>
+                                <option value="Private">Private</option>
+                                <option value="Self-Pay">Self-Pay</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Days Service to Claim</label>
+                            <input type="number" name="Days_Between_Service_and_Claim" value="13" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Provider Claims (Monthly)</label>
+                            <input type="number" name="Number_of_Claims_Per_Provider_Monthly" value="70" required>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="analyze-btn">
+                    <span class="btn-text">Run Intelligence Analysis</span>
+                    <div class="spinner" id="btn-spinner" style="display: none;"></div>
+                </button>
+            </form>
+
+            <div class="results-panel glass-panel" id="results-panel" style="display: none;">
+                <h2>Analysis Results</h2>
+                
+                <div class="score-container">
+                    <div class="circular-progress" id="progress-circle">
+                        <div class="inner-circle">
+                            <span id="confidence-value">0%</span>
+                        </div>
+                    </div>
+                    <div class="risk-info">
+                        <h3>Risk Escalation Band</h3>
+                        <div class="band-badge" id="band-badge">UNKNOWN</div>
+                        <p id="risk-description">Awaiting analysis...</p>
+                    </div>
+                </div>
+                
+                <div class="reasons-container" id="reasons-container" style="display: none; margin-top: 2rem; width: 100%; text-align: left;">
+                    <h3 style="color: #cbd5e1; margin-bottom: 1rem; font-size: 1.1rem;">Top Anomaly Drivers</h3>
+                    <ul id="reasons-list" style="list-style-type: none; padding: 0;">
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="/static/script.js"></script>
+</body>
+</html>

@@ -12,7 +12,6 @@ env/
 
 # Large data & model artifacts (regenerate by running the notebook)
 *.csv
-models/*.joblib
 
 # Jupyter
 .ipynb_checkpoints/
